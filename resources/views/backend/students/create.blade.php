@@ -15,9 +15,9 @@
                             <label class="form-label">Address</label>
                             <input type="text" class="form-control">
                             <label class="form-label">Contact</label>
-                            <input type="text" class="form-control">
-                            
+                            <input type="text" class="form-control">                            
                         </div>
+                        <button class="btn btn-primary float-end">Submit</button>
                     </form>
                 </div>
             </div>

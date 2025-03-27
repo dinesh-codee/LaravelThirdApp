@@ -34,13 +34,16 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('students') }}">Students</a>
+                            <a class="nav-link" href="{{ route('students') }}">Students</a>
                         </li>
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{ Route('teachers') }}">Teachers</a>
+                            <a class="nav-link" href="{{ Route('teachers') }}">Teachers</a>
                         </li>
                         <li class="nav-item">
-                                    <a class="nav-link" href="{{ Route('students.create') }}">Create Student</a>
+                            <a class="nav-link" href="{{ Route('students.create') }}">Create Student</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ Route('teams.index') }}">Teams</a>
                         </li>
                     </ul>
 
