@@ -26,17 +26,20 @@
 
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                <form>
+                                            {{-- FORM Section --}}
+                                                <form action="{{ route('students.store') }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
                                                     <div class="row">
                                                         <div class="mb-3  col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Name</label>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" name="name" class="form-control"
                                                                 placeholder="Enter Name">
                                                         </div>
 
                                                         <div class ="col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Address</label>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" name="address"  class="form-control"
                                                                 placeholder="Enter Address">
                                                         </div>
                                                     </div>
@@ -44,13 +47,13 @@
                                                     <div class="row">
                                                         <div class="mb-3  col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Email</label>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" name="email" class="form-control"
                                                                 placeholder="Enter Email">
                                                         </div>
 
                                                         <div class ="col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Contact</label>
-                                                            <input type="text" class="form-control"
+                                                            <input type="text" name="contact" class="form-control"
                                                                 placeholder="Enter Contact">
                                                         </div>
                                                     </div>
@@ -58,28 +61,36 @@
                                                     <div class="row">
                                                         <div class="mb-3  col-md-6 col-sm-12">
                                                             <label class="form-label float-start">DOB</label>
-                                                            <input type="date" class="form-control">
+                                                            <input type="date" name="dob" class="form-control">
                                                         </div>
 
                                                         <div class ="col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Status</label>
-                                                            <select class="form-select">
+                                                            <select name="selected" class="form-select">
                                                                 <option value="Active">Active</option>
                                                                 <option value="Inactive">Inactive</option>
                                                             </select>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                    <div class="row">
+                                                        <div class="mb-3  col-md-6 col-sm-12">
+                                                            <label class="form-label float-start">Profile Image</label>
+                                                            <input type="file"  name="profile" class="form-control">
+                                                        </div>
+                                                    </div>
 
-                                                <!-- Modal footer -->
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-danger"
-                                                        data-bs-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary"
-                                                        data-bs-dismiss="modal">Submit</button>
-                                                </div>
+
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Submit</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>

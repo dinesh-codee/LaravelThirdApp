@@ -17,5 +17,5 @@ Route::get('/students', [StudentController::class, 'index'])->name('students'); 
 Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
 Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
 Route::get('/teams', [TeamsController::class, 'index'])->name('teams.index');
-// Route::post('/students', [StudentController::class, 'store'])->name('students.store');
+Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
 // Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
