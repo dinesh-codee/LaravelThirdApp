@@ -2,7 +2,8 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
+            <div class="col-12 ">
+                {{--   CARD FOR STUDENTS --}}
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
@@ -26,7 +27,7 @@
 
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                            {{-- FORM Section --}}
+                                                {{-- FORM Section --}}
                                                 <form action="{{ route('students.store') }}" method="POST"
                                                     enctype="multipart/form-data">
                                                     @csrf
@@ -39,7 +40,7 @@
 
                                                         <div class ="col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Address</label>
-                                                            <input type="text" name="address"  class="form-control"
+                                                            <input type="text" name="address" class="form-control"
                                                                 placeholder="Enter Address">
                                                         </div>
                                                     </div>
@@ -75,7 +76,7 @@
                                                     <div class="row">
                                                         <div class="mb-3  col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Profile Image</label>
-                                                            <input type="file"  name="profile" class="form-control">
+                                                            <input type="file" name="profile" class="form-control">
                                                         </div>
                                                     </div>
 
@@ -93,8 +94,11 @@
 
                                     </div>
                                 </div>
-                            </div>
-                            <table class="table text-center table-striped">
+                            </div>                            
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table text-center table-striped" id="studentTable">
                                 <thead>
                                     <tr class="bg-success text-light">
                                         <th scope="col">ID</th>
@@ -104,56 +108,39 @@
                                         <th scope="col">Contact</th>
                                         <th scope="col">DOB</th>
                                         <th scope="col">Status</th>
+                                        <th scope="col">Profile</th>
                                         <th scope="col">Operation</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Dinesh</td>
-                                        <td>Kailali</td>
-                                        <td>dineshchy@gmail.com</td>
-                                        <td>9820135012</td>
-                                        <td>1970</td>
-                                        <td>Active</td>
-                                        <td class="d-flex">
-                                            <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-warning">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Arjun</td>
-                                        <td>KTM</td>
-                                        <td>arjunrana@gmail.com</td>
-                                        <td>9710203620</td>
-                                        <td>1995</td>
-                                        <td>Active</td>
-                                        <td class="d-flex">
-                                            <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-warning">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>Milan</td>
-                                        <td>KTM</td>
-                                        <td>milandhami@gmail.com</td>
-                                        <td>9715689520</td>
-                                        <td>2020</td>
-                                        <td>Inactive</td>
-                                        <td class="d-flex">
-                                            <button class="btn btn-primary">Edit</button>
-                                            <button class="btn btn-warning">Delete</button>
-                                        </td>
-                                    </tr>
+                                    @foreach ($students as $student)
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $student['name'] }}</td>
+                                            <td>{{ $student['address'] }}</td>
+                                            <td>{{ $student['email'] }}</td>
+                                            <td>{{ $student['contact'] }}</td>
+                                            <td>{{ $student['dob'] }}</td>
+                                            <td>{{ $student['selected'] }}</td>
+                                            <td><img height="100px" width="100px"
+                                                    src="{{ asset('images/students/' . $student->profile) }}"></td>
+                                            <td class="d-flex">
+                                                <button class="btn btn-primary">Edit</button>
+                                                <button class="btn btn-warning">Delete</button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $('#studentTable').DataTable();
+        });
+    </script>
 @endsection
 </div>

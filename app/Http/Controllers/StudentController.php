@@ -11,7 +11,8 @@ class StudentController extends Controller
 {
     //
     public function index(){
-        return view ("backend.students.index");
+        $students = Student::get();
+        return view("backend.students.index", compact('students'));
     }
     public function create(){
         return view("backend.students.create");
@@ -30,8 +31,8 @@ class StudentController extends Controller
         $student-> contact = $request['contact'];
         $student-> dob = $request['dob'];
         $student-> selected = $request['selected'];
-        $student-> profile = $request['profile'];
+        $student-> profile = $image;
         $student-> save();
-        dd($student);
+        return back();
     }
 }
