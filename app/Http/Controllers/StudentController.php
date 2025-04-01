@@ -9,30 +9,73 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    //
-    public function index(){
+    // THE FIRST DATA ARE SENT HERE
+    public function index()
+    {
         $students = Student::get();
         return view("backend.students.index", compact('students'));
     }
-    public function create(){
+
+    // FOR TESTIMG
+    public function create()
+    {
         return view("backend.students.create");
     }
 
-    public function store(Request $request){
-        if($request->hasFile('profile')){
-            $image = time().'.'.$request['profile']->getClientOriginalExtension();
+
+    // FOR STORE
+    public function store(Request $request)
+    {
+        if ($request->hasFile('profile')) {
+            $image = time() . '.' . $request['profile']->getClientOriginalExtension();
             $location = 'images/students';
             $request['profile']->move($location, $image);
+        } else {
+            $image = 'default.png';
         }
         $student = new Student();
-        $student-> name = $request['name'];
-        $student-> address = $request['address'];
-        $student-> email = $request['email'];
-        $student-> contact = $request['contact'];
-        $student-> dob = $request['dob'];
-        $student-> selected = $request['selected'];
-        $student-> profile = $image;
-        $student-> save();
+        $student->name = $request['name'];
+        $student->address = $request['address'];
+        $student->email = $request['email'];
+        $student->contact = $request['contact'];
+        $student->dob = $request['dob'];
+        $student->selected = $request['selected'];
+        $student->profile = $image;
+        $student->save();
         return back();
     }
+
+    // FOR EDIT THE EXISTING STUDENT
+    public function edit($id)
+    {
+        $student = Student::find($id);
+        return view('backend.students.edit', compact('student'));
+    }
+
+    // U
+    public function update(Request $request)
+    {
+        // dd($request->all());    
+        $student = Student::find($request['id']);
+        // dd($student);
+        if ($request->hasFile('profile')) {
+            $image = time() . '.' . $request['profile']->getClientOriginalExtension();
+            $location = 'images/students';
+            $request['profile']->move($location, $image);
+        } else{
+            $image = $student['profile'];
+        }
+
+        $student->name = $request['name'];
+        $student->address = $request['address'];
+        $student->email = $request['email'];
+        $student->contact = $request['contact'];
+        $student->dob = $request['dob'];
+        $student->selected = $request['selected'];
+        $student->profile = $image ;
+        $student->save();
+        return redirect()->route('students');
+
+    }
+
 }

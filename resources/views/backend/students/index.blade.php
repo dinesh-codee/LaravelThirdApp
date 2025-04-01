@@ -125,8 +125,8 @@
                                             <td><img height="100px" width="100px"
                                                     src="{{ asset('images/students/' . $student->profile) }}"></td>
                                             <td class="d-flex">
-                                                <button class="btn btn-primary">Edit</button>
-                                                <button class="btn btn-warning">Delete</button>
+                                                <a class="btn btn-primary" href="{{ route('students.edit',$student['id']) }}">Edit</a>
+                                                 <a class="btn btn-warning" href="">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
