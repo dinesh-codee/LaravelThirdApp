@@ -17,6 +17,7 @@ Route::post('/students/store', [StudentController::class, 'store'])->name('stude
 Route::get('/students', [StudentController::class, 'index'])->name('students'); # Url Route index is function/method name
 Route::get('/students/edit/{id}', [StudentController::class, 'edit'])->name('students.edit');
 Route::post('/students/update/', [StudentController::class, 'update'])->name('students.update');
+Route::get('/students/delete/{id}', [StudentController::class, 'delete'])->name('students.delete');
 
 Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
 Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');

@@ -26,6 +26,13 @@ class StudentController extends Controller
     // FOR STORE
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'contact' => 'required',
+            'email' => 'required|email',
+            'dob' => 'required|date',
+        ]);
         if ($request->hasFile('profile')) {
             $image = time() . '.' . $request['profile']->getClientOriginalExtension();
             $location = 'images/students';
@@ -42,7 +49,7 @@ class StudentController extends Controller
         $student->selected = $request['selected'];
         $student->profile = $image;
         $student->save();
-        return back();
+        return back()->with('success', 'Student Created Successfully!');
     }
 
     // FOR EDIT THE EXISTING STUDENT
@@ -74,8 +81,17 @@ class StudentController extends Controller
         $student->selected = $request['selected'];
         $student->profile = $image ;
         $student->save();
-        return redirect()->route('students');
+        return redirect()->route('students')->with('success','Student Updated Successfully!');
+        // return redirect()->route('students');
 
+    }
+
+
+    // FOR DELETE THE STUDENT
+    public function delete($id){
+        $student = Student::find($id);
+        $student->delete();
+        return back()->with('error', 'Student Deleted Successfully!');
     }
 
 }
