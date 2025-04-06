@@ -16,11 +16,6 @@
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#myModal">Add</button>
-                                    <div class="col-6">
-                                        @foreach ($errors->all() as $error)
-                                            <span class="text-danger">{{ $error }}</span><br>
-                                        @endforeach
-                                    </div>
                                 <div class="modal" id="myModal">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
@@ -33,7 +28,7 @@
 
                                             <!-- Modal body -->
                                             <div class="modal-body">
-                                                
+
                                                 {{-- FORM Section --}}
                                                 <form action="{{ route('students.store') }}" method="POST"
                                                     enctype="multipart/form-data">
@@ -132,6 +127,11 @@
                         </div>
                     </div>
                     <div class="card-body">
+                        <div class="col-12 text-center">
+                            @foreach ($errors->all() as $error)
+                                <span class="text-danger">{{ $error }}</span><br>
+                            @endforeach
+                        </div>
                         <div class="row">
                             {{-- FOR SUCCESS MESSAGE --}}
                             <div class="col-12">
@@ -180,7 +180,8 @@
                                             <a class="btn btn-primary"
                                                 href="{{ route('students.edit', $student['id']) }}">Edit</a>
                                             <a class="btn btn-warning"
-                                                href="{{ route('students.delete', $student['id']) }}" onclick="return confirm('Are you sure to delete?')">Delete</a>
+                                                href="{{ route('students.delete', $student['id']) }}"
+                                                onclick="return confirm('Are you sure to delete?')">Delete</a>
 
                                         </td>
                                     </tr>

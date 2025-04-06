@@ -13,14 +13,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// WORKING WITH STUDENTS
 Route::post('/students/store', [StudentController::class, 'store'])->name('students.store');
 Route::get('/students', [StudentController::class, 'index'])->name('students'); # Url Route index is function/method name
 Route::get('/students/edit/{id}', [StudentController::class, 'edit'])->name('students.edit');
 Route::post('/students/update/', [StudentController::class, 'update'])->name('students.update');
 Route::get('/students/delete/{id}', [StudentController::class, 'delete'])->name('students.delete');
 
-Route::get('/students/create', [StudentController::class, 'create'])->name('students.create');
+// WORKING WITH TEACHERS
 Route::get('/teachers', [TeacherController::class, 'index'])->name('teachers');
 Route::POST('/teachers/store', [TeacherController::class, 'store'])->name('teachers.store');
+
+// WORKING WITH TEAMS
 Route::get('/teams', [TeamsController::class, 'index'])->name('teams.index');
-// Route::get('/students/{id}', [StudentController::class, 'show'])->name('students.show');
+Route::post('/teams/store', [TeamsController::class, 'store'])->name('teams.store');
+
+

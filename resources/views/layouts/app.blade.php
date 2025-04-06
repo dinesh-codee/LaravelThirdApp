@@ -51,13 +51,10 @@
                                 <a class="nav-link" href="{{ route('students') }}">Students</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ Route('teachers') }}">Teachers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ Route('students.create') }}">Create Student</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="{{ Route('teams.index') }}">Teams</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ Route('teachers') }}">Teachers</a>
                             </li>
                         @endauth
                     </ul>

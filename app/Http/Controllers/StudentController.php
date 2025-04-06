@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Student;
+use App\Http\Requests\StudentStoreRequest;
+use App\Http\Requests\StudentUpdateRequest;
 
 use Illuminate\Http\Request;
 
@@ -16,23 +18,17 @@ class StudentController extends Controller
         return view("backend.students.index", compact('students'));
     }
 
-    // FOR TESTIMG
-    public function create()
-    {
-        return view("backend.students.create");
-    }
-
 
     // FOR STORE
-    public function store(Request $request)
+    public function store(StudentStoreRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'contact' => 'required',
-            'email' => 'required|email',
-            'dob' => 'required|date',
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'address' => 'required',
+        //     'contact' => 'required',
+        //     'email' => 'required|email',
+        //     'dob' => 'required|date',
+        // ]);
         if ($request->hasFile('profile')) {
             $image = time() . '.' . $request['profile']->getClientOriginalExtension();
             $location = 'images/students';
@@ -60,7 +56,7 @@ class StudentController extends Controller
     }
 
     // U
-    public function update(Request $request)
+    public function update(StudentUpdateRequest $request)
     {
         // dd($request->all());    
         $student = Student::find($request['id']);
@@ -69,7 +65,7 @@ class StudentController extends Controller
             $image = time() . '.' . $request['profile']->getClientOriginalExtension();
             $location = 'images/students';
             $request['profile']->move($location, $image);
-        } else{
+        } else {
             $image = $student['profile'];
         }
 
@@ -79,16 +75,17 @@ class StudentController extends Controller
         $student->contact = $request['contact'];
         $student->dob = $request['dob'];
         $student->selected = $request['selected'];
-        $student->profile = $image ;
+        $student->profile = $image;
         $student->save();
-        return redirect()->route('students')->with('success','Student Updated Successfully!');
+        return redirect()->route('students')->with('success', 'Student Updated Successfully!');
         // return redirect()->route('students');
 
     }
 
 
     // FOR DELETE THE STUDENT
-    public function delete($id){
+    public function delete($id)
+    {
         $student = Student::find($id);
         $student->delete();
         return back()->with('error', 'Student Deleted Successfully!');
