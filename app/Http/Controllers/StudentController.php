@@ -29,6 +29,7 @@ class StudentController extends Controller
         //     'email' => 'required|email',
         //     'dob' => 'required|date',
         // ]);
+
         if ($request->hasFile('profile')) {
             $image = time() . '.' . $request['profile']->getClientOriginalExtension();
             $location = 'images/students';
@@ -52,6 +53,9 @@ class StudentController extends Controller
     public function edit($id)
     {
         $student = Student::find($id);
+        if(!$student){
+            abort(404);
+        }
         return view('backend.students.edit', compact('student'));
     }
 
