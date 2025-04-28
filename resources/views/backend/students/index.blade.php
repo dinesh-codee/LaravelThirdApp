@@ -15,11 +15,13 @@
                                 {{--   MODAL FOR POPUP EFFECT --}}
 
                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#bulkImportModal">Download</button>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#myModal">Add</button>
+                                {{-- Add Student In Modal --}}
                                 <div class="modal" id="myModal">
                                     <div class="modal-dialog modal-lg">
                                         <div class="modal-content">
-
                                             <!-- Modal Header -->
                                             <div class="modal-header">
                                                 <h4 class="modal-title text-primary">Add Student</h4>
@@ -106,6 +108,56 @@
                                                         <div class="mb-3  col-md-6 col-sm-12">
                                                             <label class="form-label float-start">Profile Image</label>
                                                             <input type="file" name="profile" class="form-control">
+                                                        </div>
+                                                    </div>
+
+
+                                                    <!-- Modal footer -->
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary"
+                                                            data-bs-dismiss="modal">Submit</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                {{-- The bulk import --}}
+                                <div class="modal fade" data-bs-backdrop="static" id="bulkImportModal">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+
+                                            <!-- Modal Header -->
+                                            <div class="modal-header row">
+
+                                                <div class="col-md-6 bg-success ">
+                                                    <h4 class="bg-primary">hello</h4>
+                                                </div>
+                                                <div class="col-md-6 text-end">
+                                                    hello
+                                                </div>
+                                                {{-- <h4 class="modal-title text-primary">Ready to download</h4>
+                                                <a href="" download="">Export</a>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button> --}}
+                                            </div>
+
+                                            <!-- Modal body -->
+                                            <div class="modal-body">
+
+                                                {{-- FORM Section --}}
+                                                <form action="{{ route('students.store') }}" method="POST"
+                                                    enctype="multipart/form-data">
+                                                    @csrf
+                                                    <div class="row">
+                                                        <div class="mb-3 col-md-6 col-sm-12 ">
+                                                            <label class="float-start mb-2 fs-5" for="">Please
+                                                                choose a file</label>
+                                                            <input type="file" name="file" class="form-control"
+                                                                placeholder="Enter Name" value="{{ old('name') }}">
                                                         </div>
                                                     </div>
 

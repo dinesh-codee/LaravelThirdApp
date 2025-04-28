@@ -59,7 +59,7 @@ class StudentController extends Controller
         return view('backend.students.edit', compact('student'));
     }
 
-    // U
+    // Update code
     public function update(StudentUpdateRequest $request)
     {
         // dd($request->all());    

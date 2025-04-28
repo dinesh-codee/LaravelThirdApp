@@ -56,6 +56,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ Route('teachers') }}">Teachers</a>
                             </li>
+                            {{-- <li class="nav-item">
+                                <a class="nav-link" href="{{ Route('roles') }}">Roles</a>
+                            </li> --}}
                         @endauth
                     </ul>
 

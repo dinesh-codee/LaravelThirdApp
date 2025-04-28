@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TeamsController;
+use App\Http\Controllers\RolesController;
 
 
 Route::get('/', function () {
@@ -11,12 +12,8 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
-
-
 // MIDDLEWARE FOR AUTHENTICATION
-Route::group(['middleware' => 'auth'], function () {
+// Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -34,4 +31,6 @@ Route::group(['middleware' => 'auth'], function () {
     // WORKING WITH TEAMS
     Route::get('/teams', [TeamsController::class, 'index'])->name('teams.index');
     Route::post('/teams/store', [TeamsController::class, 'store'])->name('teams.store');
-});
+
+    // Route::get('/roles',[RolesController::class, 'index'])->name('roles.index');
+// });
